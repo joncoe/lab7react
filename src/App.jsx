@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import useForm from './lib/useForm';
 import './App.scss';
 
