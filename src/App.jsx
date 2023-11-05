@@ -10,6 +10,19 @@ function App() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log('handle submit', inputs);
+		fetch('http://localhost:5000/insert', {
+			mode: 'cors',
+			method: 'POST',
+			body: JSON.stringify(inputs),
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*',
+			},
+		}).then((data) => {
+			console.log(data);
+			return data.json();
+		});
 	};
 
 	return (
@@ -32,7 +45,7 @@ function App() {
 							<span className="label-text">What is your name?</span>
 						</label>
 						<input
-							type="text"
+							type="email"
 							placeholder="Email Please"
 							name="email"
 							value={inputs.email}
