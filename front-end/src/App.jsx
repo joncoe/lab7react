@@ -10,19 +10,24 @@ function App() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log('handle submit', inputs);
-		fetch('http://localhost:5000/insert', {
-			mode: 'cors',
+		console.log(JSON.stringify(inputs));
+		await fetch('http://127.0.0.1:8080/insert', {
+			mode: 'no-cors',
 			method: 'POST',
 			body: JSON.stringify(inputs),
 			headers: {
 				Accept: 'application/json',
-				'Content-Type': 'application/json',
+				'Content-Type': 'application/json; charset=UTF-8',
 				'Access-Control-Allow-Origin': '*',
 			},
-		}).then((data) => {
-			console.log(data);
-			return data.json();
 		});
+		// .then((data) => {
+		// 	return data.json();
+		// })
+		// .then((json) => {
+		// 	console.log(json.data);
+		// 	clearForm();
+		// });
 	};
 
 	return (
@@ -39,6 +44,7 @@ function App() {
 							name="name"
 							value={inputs.name}
 							onChange={handleChange}
+							required
 							className="input input-bordered w-full max-w-xs"
 						/>
 						<label className="label">
@@ -50,10 +56,13 @@ function App() {
 							name="email"
 							value={inputs.email}
 							onChange={handleChange}
+							required
 							className="input input-bordered w-full max-w-xs"
 						/>
 					</div>
-					<button className="btn  btn-primary">Go</button>
+					<button className="btn  btn-primary" type="submit">
+						Go
+					</button>
 					<button onClick={resetForm} className="btn">
 						Reset
 					</button>
