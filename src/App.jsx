@@ -23,7 +23,7 @@ function App() {
 						</label>
 						<input
 							type="text"
-							placeholder="Type here"
+							placeholder="Your Name Please "
 							name="name"
 							value={inputs.name}
 							onChange={handleChange}
@@ -34,7 +34,7 @@ function App() {
 						</label>
 						<input
 							type="text"
-							placeholder="Type here"
+							placeholder="Email Please"
 							name="email"
 							value={inputs.email}
 							onChange={handleChange}
