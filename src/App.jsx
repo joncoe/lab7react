@@ -7,15 +7,14 @@ function App() {
 		email: '',
 	});
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.log('handle submit', inputs);
+	};
+
 	return (
 		<>
-			<form
-				onSubmit={async (e) => {
-					e.preventDefault();
-					console.log(inputs);
-					clearForm();
-				}}
-			>
+			<form onSubmit={handleSubmit}>
 				<div className="flex w-72 flex-col gap-6">
 					<div className="form-control w-full max-w-xs">
 						<label className="label">
@@ -41,13 +40,8 @@ function App() {
 							className="input input-bordered w-full max-w-xs"
 						/>
 					</div>
-					<button className="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">
-						Go
-					</button>
-					<button
-						onClick={resetForm}
-						className="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
-					>
+					<button className="btn  btn-primary">Go</button>
+					<button onClick={resetForm} className="btn">
 						Reset
 					</button>
 					<p>☀️ high of 12c</p>
