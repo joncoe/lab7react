@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, Response, jsonify, request, render_template
+from flask_cors import CORS, cross_origin
+
 
 app = Flask(__name__)
 
@@ -50,18 +52,27 @@ def test():  # We use this route for the webform
     return render_template("test.html")  # Render test.html from templates directory
 
 
-@app.route("/insert", methods=["POST"])  # Enable GET and POST
+@app.route("/insert", methods=["GET", "POST"])  # Enable GET and POST
+@cross_origin(supports_credentials=True)
 def insert_test():
+    # headers = request.headers
+    # body = request.json
     data = request.get_json()  # Returns a dictionary
+    # data = request.json
+    print("🚀🚀🚀🚀🚀🚀")
     print(data)
 
-    request_name = data_customer = data["name"]
-    print("name = ", request_name)
-    request_email = data_customer = data["email"]
-    print("email = ", request_email)
+    # request_name = data_customer = data["name"]
+    # print("name = ", request_name)
+    # request_email = data_customer = data["email"]
+    # print("email = ", request_email)
 
-    return jsonify({"data": "success"})
+    # response_body = {"test123": "123", "name": "Owen!", "about": "about!"}
+    return jsonify(data)
+
+    # return jsonify({"data": "success"})
+    # return Response({"data": jsonify(data)}, status=200, mimetype="application/json")
 
 
 if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+    app.run(port=9030, debug=True)
